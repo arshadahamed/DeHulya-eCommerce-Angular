@@ -11,20 +11,21 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/dehulya",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
-
               }
             ],
             "styles": [
@@ -32,13 +33,20 @@
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/animate.min.css",
               "src/assets/css/magnific-popup.css",
-              "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
               "src/assets/css/slick.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "src/assets/css/responsive.css",
+              "src/assets/css/feature.css",
+              "src/assets/css/fontawesome.min.css",
+              "src/assets/css/meanmenu.css",
+              "src/assets/css/icofont.min.css"
             ],
             "scripts": [
               "src/assets/js/vendor/modernizr-3.5.0.min.js",
               "src/assets/js/vendor/jquery-3.6.0.min.js",
+              "node_modules/jquery-countdown/dist/jquery.countdown.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/maplace-active.js",
               "src/assets/js/popper.min.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/isotope.pkgd.min.js",
@@ -55,6 +63,7 @@
               "src/assets/js/fontawesome.min.js",
               "src/assets/js/plugins.js",
               "src/assets/js/main.js"
+
             ]
           },
           "configurations": {
@@ -110,9 +119,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": [],
             "scripts": []
           }
         }

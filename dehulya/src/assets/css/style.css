@@ -1,9 +1,9 @@
 /*********************************************************************************
 
-	Template Name: Minimalin - Minimal eCommerce Bootstrap 5 HTML Template
-    Author: Marino Themes
-    Support: marino.themes@gmail.com
-    Description: Minimalin - Minimal eCommerce Bootstrap 5 HTML Template
+	Template Name: Dehulya - Dehulya eCommerce Bootstrap 5 HTML Template
+    Author: Arshad Ahamed
+    Support: arshadahamed.com
+    Description: Dehulya - Dehulya eCommerce Angular Template
     Version: 1.0.0
 
 **********************************************************************************/
@@ -71,19 +71,21 @@
 :root {
   --bodyColor: #303030;
   --bodyBg: #fff;
+  --themeColor: #07332c;
+  --redColor: #d3122a;
   --whiteColor: #ffffff;
   --whiteColor2:#f6f6f6;
   --blackColor: #000000;
   --blackColor2: #333333;
   --contentColor: #303030;
   --headingColor: #1f1f25;
-  --primaryColor: #0a85d1;
+  --primaryColor: #07332c;
   --secondaryColor: #f34f3f;
   --borderColor: #eeeeee;
   --greyColor: #ebebeb;
   --greyColor2: #333333;
   --yellow:#eab73e;
-  --yellow2: #c29958;
+  --yellow2: #07332c;
   --red:#d3122a;
   --greywhite: #f69679;
   --green:#0b9d8a;
@@ -123,25 +125,25 @@
 .layout__2 {
   --bodyFont: "Nunito", sans-serif;
   --headingFont: "Nunito", sans-serif;
-  --primaryColor: #eab73e;
+  --primaryColor: #07332c;
 }
 
 .layout__3 {
   --bodyFont: "Work Sans", sans-serif;
   --headingFont: "Work Sans", sans-serif;
-  --primaryColor: #d3122a;
+  --primaryColor: #07332c;
 }
 
 .layout__4 {
   --bodyFont: "Lora", sans-serif;
   --headingFont: "Lora", sans-serif;
-  --primaryColor: #f69679;
+  --primaryColor: #07332c;
 }
 
 .layout__5 {
   --bodyFont: "Lato", sans-serif;
   --headingFont: "Lato", sans-serif;
-  --primaryColor: #c29958;
+  --primaryColor: #07332c;
 }
 
 .layout__6 {
@@ -3416,6 +3418,9 @@ mobile-aside-close .mobile-off-canvas-active .mobile-aside-close i {
   z-index: 99;
 }
 .grid__wraper__icon ul li a {
+  margin: 0 6px;
+  justify-content: center;
+  gap: 12px;
   height: 45px;
   width: 45px;
   line-height: 45px;
@@ -3449,8 +3454,8 @@ mobile-aside-close .mobile-off-canvas-active .mobile-aside-close i {
 }
 .grid__wraper__badge span {
   font-size: 12px;
-  background-color: var(--whiteColor);
-  color: var(--blackColor);
+  background-color: var(--redColor);
+  color: var(--whiteColor);
   padding: 0 10px;
   text-transform: unset;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
@@ -6945,6 +6950,8 @@ blockquote i {
 
 .footer {
   background: var(--greyColor);
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 .footer__title {
   font-size: 20px;
@@ -7264,3 +7271,4 @@ blockquote i {
 .is_dark .slider__default__arrow--2 .slick-arrow:hover {
   color: var(--blackColor);
 }/*# sourceMappingURL=style.css.map */
+

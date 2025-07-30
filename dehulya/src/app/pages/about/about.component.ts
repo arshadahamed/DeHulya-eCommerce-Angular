@@ -1,13 +1,9 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from "../../component/header/header.component";
-import { FooterComponent } from "../../component/footer/footer.component";
-
+import {  Component } from '@angular/core';
 @Component({
   selector: 'app-about',
-  imports: [HeaderComponent, FooterComponent],
+  imports: [],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-
 }

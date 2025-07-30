@@ -1,0 +1,53 @@
+.modal-content {
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.grid__quick__img img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.grid__quick__content h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.quick__price {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.selector__wrapper select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.featurearea__quantity {
+  display: flex;
+  align-items: center;
+}
+
+.qty-container {
+  display: flex;
+  border: 1px solid rgba(31, 34, 38, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.qty-container button {
+  border: none;
+  background: none;
+  font-size: 16px;
+  padding: 0 12px;
+}
+
+.qty-container input {
+  width: 40px;
+  text-align: center;
+  border: none;
+}

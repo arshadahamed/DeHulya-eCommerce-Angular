@@ -1,0 +1,61 @@
+<div #modalRef class="grid__quick__view__modal modalarea modal fade" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- top‑right “×” -->
+      <button
+        type="button"
+        class="btn-close"
+        (click)="close()"
+        aria-label="Close"></button>
+
+      <div class="modal-body">
+        <div class="row align-items-center">
+          <!-- Left: image -->
+          <div class="col-xl-6 col-lg-6 col-md-6">
+            <div class="grid__quick__img">
+              <img [src]="product.imgPrimary" [alt]="product.title" />
+            </div>
+          </div>
+          <!-- Right: details -->
+          <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+            <div class="grid__quick__content">
+              <h3>{{ product.title }}</h3>
+              <div class="quick__price">
+                <del *ngIf="product.onSale">{{ product.price | currency }}</del>
+                <span>
+                  {{
+                    product.onSale
+                      ? (product.salePrice! | currency)
+                      : (product.price | currency)
+                  }}
+                </span>
+              </div>
+              <p>{{ product.description }}</p>
+
+              <!-- variant selector, if any -->
+              <div class="selector__wrapper" *ngIf="product.variants?.length">
+                <select
+                  class="single-option-selector select--wd"
+                  [(ngModel)]="selectedVariant">
+                  <option *ngFor="let v of product.variants" [value]="v">
+                    {{ v }}
+                  </option>
+                </select>
+              </div>
+
+              <!-- just one Close button -->
+              <div class="mt-4">
+                <button
+                  type="button"
+                  class="default__button"
+                  (click)="close()">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
