@@ -1,0 +1,70 @@
+.new__badge {
+  background-color: #07332c;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.sale__badge {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-weight: semibold;
+  border-radius: 4px;
+}
+
+.out__of__stock__badge {
+  background-color: #6c757d;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.in__stock__badge {
+  background-color: #007bff;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.out-of-stock-card {
+  max-width: 500px;
+  margin: auto;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.out-of-stock-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  color: #ff4500; /* Or any color that stands out */
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 80%;
+  font-family: Calibri, sans-serif;
+}
+.overlay-title{
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.overlay-description{
+  font-size: 0.65rem;
+  color: #333;
+}

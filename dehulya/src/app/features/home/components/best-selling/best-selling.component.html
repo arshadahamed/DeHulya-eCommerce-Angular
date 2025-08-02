@@ -1,6 +1,5 @@
 <div class="best__selling sp_bottom_80">
   <div class="container">
-    <!-- Title + Tabs -->
     <div class="row mb-4">
       <div class="col-md-6">
         <h2 class="section__title"><strong>Our Products</strong></h2>
@@ -10,7 +9,7 @@
           <li *ngFor="let cat of categories" class="nav-item">
             <button
               class="product__tap__link"
-              [class.active]="activeTab === cat"
+              [class.active]="(activeTab$ | async) === cat"
               (click)="selectTab(cat)">
               {{ cat }}
             </button>
@@ -19,11 +18,10 @@
       </div>
     </div>
 
-    <!-- Products -->
     <div class="row">
       <div
         class="col-xl-3 col-lg-3 col-md-6 col-12 mb-4"
-        *ngFor="let prod of filteredProducts">
+        *ngFor="let prod of (filteredProducts$ | async); trackBy: trackByProductId">
         <app-product-card
           [product]="prod"
           (quickView)="openQuickView(prod)">
@@ -31,14 +29,12 @@
       </div>
     </div>
 
-    <!-- View All -->
     <div class="row">
       <div class="col-12 text-center">
         <a class="default__button btn__yellow__2" href="#">View All</a>
       </div>
     </div>
 
-    <!-- Quick View Modal -->
     <app-quick-view
       *ngIf="quickProduct"
       [product]="quickProduct"

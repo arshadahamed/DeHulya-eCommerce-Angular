@@ -4,7 +4,8 @@ import { ProductCardComponent } from '../../../../component/product-card/product
 import { QuickViewComponent } from '../../../../component/shared/quick-view/quick-view.component';
 import { Category, CATEGORIES } from '../../../../data/category.data';
 import { Product } from '../../../../models/product.model';
-import { ALL_PRODUCTS } from '../../../../data/product.data';
+import { ProductService } from '../../../../services/product.service'; // <-- import service
+import { Observable, switchMap, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-best-selling',
@@ -15,19 +16,27 @@ import { ALL_PRODUCTS } from '../../../../data/product.data';
 })
 export class BestSellingComponent implements OnInit {
   categories = CATEGORIES;
-  activeTab: Category = CATEGORIES[0];
-  products = ALL_PRODUCTS;
+
+  // BehaviorSubject to track active category tab reactively
+  private activeTabSubject = new BehaviorSubject<Category>(CATEGORIES[0]);
+  activeTab$ = this.activeTabSubject.asObservable();
+
+  // Observable products filtered by active category
+  filteredProducts$!: Observable<Product[]>;
 
   quickProduct?: Product;
 
-  ngOnInit() {}
+  constructor(private productService: ProductService) {}
 
-  get filteredProducts() {
-    return this.products.filter(p => p.category === this.activeTab);
+  ngOnInit() {
+    // Whenever activeTab changes, switch to filtered products for that category
+    this.filteredProducts$ = this.activeTab$.pipe(
+      switchMap(category => this.productService.getProductsByCategory(category))
+    );
   }
 
   selectTab(cat: Category) {
-    this.activeTab = cat;
+    this.activeTabSubject.next(cat);
   }
 
   openQuickView(prod: Product) {
@@ -36,5 +45,9 @@ export class BestSellingComponent implements OnInit {
 
   closeQuickView() {
     this.quickProduct = undefined;
+  }
+
+  trackByProductId(index: number, product: Product): number {
+    return product.id;
   }
 }

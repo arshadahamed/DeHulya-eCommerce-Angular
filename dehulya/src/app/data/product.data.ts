@@ -1,43 +1,70 @@
 import { Product } from "../models/product.model";
 
-
+/**
+ * List of all jewelry products.
+ * Each product includes details such as pricing, availability,
+ * promotional flags, and descriptive info.
+ */
 export const ALL_PRODUCTS: Product[] = [
   {
     id: 1,
-    title: 'W. Men Formal T-shirt',
+    title: 'Elegant Diamond Stud Earrings',
     imgPrimary: '/assets/img/grid/grid__17.png',
     imgSecondary: '/assets/img/grid/grid__18.png',
-    price: 72.00,
-    salePrice: 47.25,
+    price: 1200.00,
+    salePrice: 850.00,
     isNew: true,
     onSale: true,
+    isStock: true,
     countdownDate: '2025-09-30T23:59:59',
-    category: 'Diamond'
+    category: 'Diamond',
+    description:
+      'Beautiful 14K white gold earrings set with brilliant round-cut diamonds totaling 1 carat. Perfect for everyday elegance or special occasions.',
+    status: 'active',
   },
   {
     id: 2,
-    title: 'W. Men Formal T-shirt',
+    title: 'Classic Gold Wedding Band',
     imgPrimary: '/assets/img/grid/grid__19.png',
     imgSecondary: '/assets/img/grid/grid__20.png',
-    price: 72,
-    salePrice: 47,
+    price: 900.00,
+    salePrice: 720.00,
     isNew: true,
     onSale: true,
-    category: 'Diamond',
-    description: 'we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensuel...',
-    variants: []
-  },{
+    isStock: false,
+    category: 'Gold',
+    description:
+      'Timeless 18K yellow gold wedding band with a polished finish. Durable and comfortable for everyday wear.',
+    status: 'active',
+  },
+  {
     id: 3,
-    title: 'W. Men Formal T-shirt',
-    imgPrimary: '/assets/img/grid/grid__21.png',
-    imgSecondary: '/assets/img/grid/grid__22.png',
-    price: 72,
-    salePrice: 47,
+    title: 'Sterling Silver Charm Bracelet',
+    imgPrimary: '/assets/img/grid/grid__19.png',
+    imgSecondary: '/assets/img/grid/grid__20.png',
+    price: 150.00,
+    salePrice: 120.00,
     isNew: false,
     onSale: true,
+    isStock: true,
     category: 'Silver',
-    description: 'we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensuel...',
-    variants: []
+    description:
+      'Elegant sterling silver bracelet featuring multiple customizable charms. A perfect gift for loved ones or a stylish accessory for yourself.',
+    status: 'active',
+  },
+  {
+    id: 4,
+    title: 'Platinum Engagement Ring',
+    imgPrimary: '/assets/img/grid/grid__19.png',
+    imgSecondary: '/assets/img/grid/grid__20.png',
+    price: 2500.00,
+    salePrice: 2000.00,
+    isNew: true,
+    onSale: true,
+    isStock: true,
+    category: 'Diamond',
+    description:
+      'Exquisite diamond engagement ring with a stunning round diamond centerpiece, surrounded by smaller diamonds in a halo setting.',
+    status: 'active',
   }
-
 ];

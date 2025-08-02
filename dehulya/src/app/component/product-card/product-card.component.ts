@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.model';
 import { CountdownDirective } from '../../directives/countdown.directive';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { CountdownDirective } from '../../directives/countdown.directive';
   standalone: true,
   imports: [
     CommonModule,
-    CountdownDirective
+    CountdownDirective, RouterLink
   ],
   providers: [
   ],
