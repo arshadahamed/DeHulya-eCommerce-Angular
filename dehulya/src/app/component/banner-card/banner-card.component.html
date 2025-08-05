@@ -1,0 +1,27 @@
+<div class="banner banner__4 sp_bottom_80">
+  <div class="container">
+    <div class="row">
+      <div
+        class="col-xl-6 col-lg-6 col-md-6 col-12"
+        *ngFor="let banner of banners"
+      >
+        <div class="banner__img">
+          <img [src]="banner.imageUrl" [alt]="banner.title" />
+          <div class="banner__info banner__info__4">
+            <span><strong>{{ banner.label }}</strong></span>
+            <h2>
+              <a [href]="banner.linkUrl"><strong>{{ banner.title }}</strong></a>
+            </h2>
+            <div class="banner__button">
+              <a
+                class="default__button btn__black"
+                [href]="banner.linkUrl"
+                >{{ banner.buttonText }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

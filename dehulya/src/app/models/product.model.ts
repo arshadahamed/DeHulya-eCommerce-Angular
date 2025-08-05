@@ -15,5 +15,5 @@ export interface Product {
   description?: string;
 
   /** Product availability status */
-  status?: 'active' | 'inactive';
+  status: 'active' | 'inactive';
 }

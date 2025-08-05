@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../../../../component/product-card/product-card.component';
 import { QuickViewComponent } from '../../../../component/shared/quick-view/quick-view.component';
 import { Category, CATEGORIES } from '../../../../data/category.data';
-import { Product } from '../../../../models/product.model';
 import { ProductService } from '../../../../services/product.service'; // <-- import service
 import { Observable, switchMap, BehaviorSubject } from 'rxjs';
+import { Product } from '../../../../models/product.model';
 
 @Component({
   selector: 'app-best-selling',
@@ -29,10 +29,11 @@ export class BestSellingComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    // Whenever activeTab changes, switch to filtered products for that category
-    this.filteredProducts$ = this.activeTab$.pipe(
-      switchMap(category => this.productService.getProductsByCategory(category))
-    );
+  this.productService.loadProductsFromApi().subscribe();
+
+  this.filteredProducts$ = this.activeTab$.pipe(
+    switchMap(category => this.productService.getProductsByCategory(category))
+  );
   }
 
   selectTab(cat: Category) {

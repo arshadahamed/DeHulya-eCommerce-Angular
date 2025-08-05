@@ -29,6 +29,7 @@ export class ProductCardComponent {
     return 0;
   }
 
+
   onQuickViewClick() {
     this.quickView.emit();
   }

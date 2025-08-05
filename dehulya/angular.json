@@ -43,10 +43,9 @@
             ],
             "scripts": [
               "src/assets/js/vendor/modernizr-3.5.0.min.js",
-              "src/assets/js/vendor/jquery-3.6.0.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/jquery-countdown/dist/jquery.countdown.min.js",
               "src/assets/js/owl.carousel.min.js",
-              "src/assets/js/maplace-active.js",
               "src/assets/js/popper.min.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/isotope.pkgd.min.js",
@@ -72,7 +71,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -120,7 +119,9 @@
               }
             ],
             "styles": [],
-            "scripts": []
+            "scripts": [
+
+            ]
           }
         }
       }
