@@ -1,48 +1,103 @@
 <div class="best__selling sp_bottom_80">
   <div class="container">
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <h2 class="section__title"><strong>Our Products</strong></h2>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+        <div class="section__title">
+          <h2><strong>Products</strong></h2>
+        </div>
       </div>
-      <div class="col-md-6 text-end">
-        <ul class="nav best__selling__tab__wrap">
-          <li *ngFor="let cat of categories" class="nav-item">
-            <button
-              class="product__tap__link"
-              [class.active]="(activeTab$ | async)?.title === cat.title"
-              (click)="selectTab(cat)"
+      <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+        <div class="best__selling__tab">
+          <ul class="nav best__selling__tab__wrap" role="tablist">
+            <li
+              *ngFor="let cat of categories"
+              class="nav-item"
+              role="presentation"
             >
-              {{ cat.title }}
-            </button>
-          </li>
-        </ul>
+              <button
+                class="product__tap__link"
+                [class.active]="(activeTab$ | async)?.id === cat.id"
+                (click)="selectTab(cat)"
+              >
+                {{ cat.title }}
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
+    <!-- Products carousel -->
     <ngx-slick-carousel
       #slickModal="slick-carousel"
       #carouselContainer
       class="carousel"
       [config]="slideConfig"
     >
-      <div ngxSlickItem *ngFor="let prod of filteredProducts$ | async; trackBy: trackByProductId" class="slide">
-        <app-product-card [product]="prod" (quickView)="openQuickView(prod)"></app-product-card>
+      <div
+        ngxSlickItem
+        *ngFor="
+          let prod of filteredProducts$ | async;
+          trackBy: trackByProductId
+        "
+        class="col-xl-3 col-lg-3 col-md-6 col-12 column__custom__class slide"
+      >
+        <app-product-card [product]="prod" (quickView)="openQuickView($event)">
+        </app-product-card>
       </div>
     </ngx-slick-carousel>
 
-
-
-    <div class="row">
-      <div class="col-12 text-center">
-        <a class="default__button btn__yellow__2" href="#">View All</a>
+    <!-- Quick View Modal -->
+    <div
+      class="grid__quick__view__modal modalarea modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+          <div class="modal-body" *ngIf="quickProduct">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="grid__quick__img">
+                  <img
+                    [src]="quickProduct.imgPrimary"
+                    [alt]="quickProduct.title"
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="grid__quick__content">
+                  <h3>{{ quickProduct.title }}</h3>
+                  <div class="quick__price">
+                    <del *ngIf="quickProduct.onSale">
+                      {{ quickProduct.price | currency : "LKR " }}
+                    </del>
+                    {{
+                      (quickProduct.onSale
+                        ? quickProduct.salePrice
+                        : quickProduct.price
+                      ) | currency : "LKR "
+                    }}
+                  </div>
+                  <p>
+                    {{
+                      quickProduct.description || "No description available."
+                    }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <app-quick-view
-      *ngIf="quickProduct"
-      [product]="quickProduct"
-      (closed)="closeQuickView()"
-    >
-    </app-quick-view>
   </div>
 </div>

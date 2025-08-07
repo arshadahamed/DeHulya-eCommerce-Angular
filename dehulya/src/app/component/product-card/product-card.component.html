@@ -1,114 +1,104 @@
 <ng-container *ngIf="product.status === 'active'">
-<ng-container *ngIf="product.isStock; else outOfStockTemplate">
-  <div class="grid__wraper">
-    <div class="grid__wraper__img">
-      <div class="grid__wraper__img__inner">
-        <a [routerLink]="['/single-product', product.id]">
-          <img
-            class="primary__image"
-            [src]="product.imgPrimary"
-            [alt]="product.title"
-          />
-          <img
-            *ngIf="product.imgSecondary"
-            class="secondary__image"
-            [src]="product.imgSecondary"
-            [alt]="product.title + ' secondary'"
-          />
-        </a>
-      </div>
+  <ng-container *ngIf="product.isStock; else outOfStockTemplate">
+    <div class="grid__wraper">
+      <div class="grid__wraper__img">
+        <div class="grid__wraper__img__inner">
+          <a [routerLink]="['/single-product', product.id]">
+            <img class="primary__image" [src]="product.imgPrimary" [alt]="product.title" />
+            <img *ngIf="product.imgSecondary"
+                 class="secondary__image"
+                 [src]="product.imgSecondary"
+                 [alt]="product.title + ' secondary'" />
+          </a>
+        </div>
 
-      <div class="grid__wraper__icon">
-        <ul>
-          <li (click)="onQuickViewClick()">
-            <a class="quick__view__action" href="#" title="Quick View">
-              <i class="far fa-eye"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <!-- Action Icons -->
+        <div class="grid__wraper__icon">
+          <ul>
+            <li>
+              <a class="quick__view__action"
+                 href="#"
+                 title="Quick View"
+                 (click)="onQuickViewClick($event)">
+                <i class="far fa-eye"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-      <div class="grid__wraper__badge">
-        <span *ngIf="product.isNew" class="new__badge">New</span>
-        <span *ngIf="product.onSale" class="sale__badge"
-          >-{{ discountPercent }}%</span
-        >
-      </div>
+        <!-- Badges -->
+        <div class="grid__wraper__badge">
+          <span *ngIf="product.isNew" class="new__badge">New</span>
+          <span *ngIf="product.onSale" class="sale__badge">-{{ discountPercent }}%</span>
+        </div>
 
-      <div
-        *ngIf="product.countdownDate"
-        class="grid__wraper__countdown"
-        [appCountdown]="product.countdownDate"
-      ></div>
-    </div>
-
-    <div class="grid__wraper__info">
-      <h3 class="grid__wraper__tittle">
-        <a [routerLink]="['/single-product', product.id]">{{
-          product.title
-        }}</a>
-      </h3>
-      <div class="grid__wraper__price">
-        <del *ngIf="product.onSale">{{
-          product.price | currency : "LKR. " : "symbol" : "1.2-2"
-        }}</del>
-        <span>
-          {{
-            (product.onSale ? product.salePrice! : product.price)
-              | currency : "LKR. " : "symbol" : "1.2-2"
-          }}
-        </span>
-      </div>
-    </div>
-  </div>
-</ng-container>
-
-<ng-template #outOfStockTemplate>
-  <div class="grid__wraper">
-    <div class="grid__wraper__img">
-      <div class="grid__wraper__img__inner">
-        <img
-          src="/assets/img/out-of-stock.jpg"
-          alt="Out of Stock"
-          class="out-of-stock-image"
-        />
-        <div class="overlay-text">
-          <h2 class="overlay-title">{{ product.title }}</h2>
-          <p class="overlay-description">
-            This product is currently out of stock.
-          </p>
+        <!-- Countdown -->
+        <div *ngIf="product.countdownDate"
+             class="grid__wraper__countdown"
+             [appCountdown]="product.countdownDate">
         </div>
       </div>
 
-      <div class="grid__wraper__icon">
-        <ul>
-          <li (click)="onQuickViewClick()">
-            <a class="quick__view__action" href="#" title="Quick View">
-              <i class="far fa-eye"></i>
-            </a>
-          </li>
-        </ul>
+      <!-- Info -->
+      <div class="grid__wraper__info">
+        <h3 class="grid__wraper__tittle">
+          <a [routerLink]="['/single-product', product.id]">{{ product.title }}</a>
+        </h3>
+        <div class="grid__wraper__price">
+          <del *ngIf="product.onSale">
+            {{ product.price | currency : "LKR. " : "symbol" : "1.2-2" }}
+          </del>
+          <span>
+            {{ (product.onSale ? product.salePrice! : product.price)
+                | currency : "LKR. " : "symbol" : "1.2-2" }}
+          </span>
+        </div>
       </div>
     </div>
+  </ng-container>
 
-    <div class="grid__wraper__info">
-      <h3 class="grid__wraper__tittle">
-        <a [routerLink]="['/single-product', product.id]">{{
-          product.title
-        }}</a>
-      </h3>
-      <div class="grid__wraper__price">
-        <del *ngIf="product.onSale">{{
-          product.price | currency : "LKR. " : "symbol" : "1.2-2"
-        }}</del>
-        <span [ngStyle]="{'color': !product.isStock ? 'red' : 'inherit'}">
-          {{
-            (product.onSale ? product.salePrice! : product.price)
-              | currency : "LKR. " : "symbol" : "1.2-2"
-          }}
-        </span>
+  <!-- Out of stock template -->
+  <ng-template #outOfStockTemplate>
+    <div class="grid__wraper">
+      <div class="grid__wraper__img">
+        <div class="grid__wraper__img__inner">
+          <img src="/assets/img/out-of-stock.jpg"
+               alt="Out of Stock"
+               class="out-of-stock-image" />
+          <div class="overlay-text">
+            <h2 class="overlay-title">{{ product.title }}</h2>
+            <p class="overlay-description">This product is currently out of stock.</p>
+          </div>
+        </div>
+
+        <div class="grid__wraper__icon">
+          <ul>
+            <li>
+              <a class="quick__view__action"
+                 href="#"
+                 title="Quick View"
+                 (click)="onQuickViewClick($event)">
+                <i class="far fa-eye"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid__wraper__info">
+        <h3 class="grid__wraper__tittle">
+          <a [routerLink]="['/single-product', product.id]">{{ product.title }}</a>
+        </h3>
+        <div class="grid__wraper__price">
+          <del *ngIf="product.onSale">
+            {{ product.price | currency : "LKR. " : "symbol" : "1.2-2" }}
+          </del>
+          <span [ngStyle]="{'color': !product.isStock ? 'red' : 'inherit'}">
+            {{ (product.onSale ? product.salePrice! : product.price)
+                | currency : "LKR. " : "symbol" : "1.2-2" }}
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-</ng-template>
+  </ng-template>
 </ng-container>

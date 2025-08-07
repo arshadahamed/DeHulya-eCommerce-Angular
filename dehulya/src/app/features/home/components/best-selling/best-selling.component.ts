@@ -1,8 +1,15 @@
-import { AfterViewInit, AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../../../../component/product-card/product-card.component';
-import { QuickViewComponent } from '../../../../component/shared/quick-view/quick-view.component';
-import { CATEGORIES } from '../../../../data/category.data';
 import { ProductService } from '../../../../services/product.service';
 import { Observable, BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { map, filter, distinctUntilChanged, take, takeUntil } from 'rxjs/operators';
@@ -13,7 +20,7 @@ import { Category } from '../../../../models/category.model';
 @Component({
   selector: 'app-best-selling',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent, QuickViewComponent, SlickCarouselModule],
+  imports: [CommonModule, ProductCardComponent, SlickCarouselModule],
   templateUrl: './best-selling.component.html',
   styleUrls: ['./best-selling.component.css']
 })
@@ -21,8 +28,10 @@ export class BestSellingComponent implements OnInit, AfterViewInit, AfterViewChe
   @ViewChild('slickModal') slickModal!: SlickCarouselComponent;
   @ViewChild('carouselContainer', { read: ElementRef }) carouselContainer!: ElementRef;
 
-  categories = CATEGORIES;
-  private activeTabSubject = new BehaviorSubject<Category>(CATEGORIES[0]);
+
+
+  categories: Category[] = [];
+  private activeTabSubject = new BehaviorSubject<Category | null>(null);
   activeTab$ = this.activeTabSubject.asObservable();
 
   filteredProducts$: Observable<Product[]> = new Observable<Product[]>();
@@ -32,7 +41,12 @@ export class BestSellingComponent implements OnInit, AfterViewInit, AfterViewChe
     slidesToShow: 4,
     slidesToScroll: 1,
     dots: true,
-    infinite: false,  // Change to true once stable
+    infinite: false,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1 } },
+      { breakpoint: 768,  settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 480,  settings: { slidesToShow: 1, slidesToScroll: 1 } }
+    ]
   };
 
   private carouselNeedsReinit = false;
@@ -45,29 +59,34 @@ export class BestSellingComponent implements OnInit, AfterViewInit, AfterViewChe
   constructor(private productService: ProductService, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
+    // Load categories first and set default active tab
+    this.productService.loadCategoriesFromApi().pipe(take(1)).subscribe(cats => {
+      this.categories = cats;
+      if (cats.length > 0) this.activeTabSubject.next(cats[0]);
+    });
+
+    // Load products
     this.productService.loadProductsFromApi().pipe(take(1)).subscribe();
 
+    // Create filtered products observable based on active category and active products
     this.filteredProducts$ = combineLatest([
       this.productService.products$.pipe(
         filter(products => products.length > 0),
-        distinctUntilChanged((prev, curr) => this.arraysAreEqualById(prev, curr))
+        distinctUntilChanged((a, b) => this.arraysAreEqualById(a, b))
       ),
       this.activeTab$.pipe(
-        distinctUntilChanged((prev, curr) => prev.title === curr.title)
+        filter((cat): cat is Category => !!cat),
+        distinctUntilChanged((prev, curr) => prev.id === curr.id)
       )
     ]).pipe(
-      map(([products, category]) => {
-        const filtered = products.filter(p => p.category.title === category.title && p.status === 'active');
-
-        // Deduplicate by product id just in case
-        const unique = filtered.filter((prod, index, self) =>
-          index === self.findIndex(p => p.id === prod.id)
-        );
-
-        return unique;
-      })
+      map(([products, category]) =>
+        products.filter(p => p.category_id === category.id && p.status === 'active')
+          // Deduplicate if needed
+          .filter((prod, index, self) => index === self.findIndex(p => p.id === prod.id))
+      )
     );
 
+    // Re-init carousel whenever filtered products change
     this.filteredProducts$.pipe(takeUntil(this.destroy$)).subscribe(products => {
       this.filteredProductCount = products.length;
       this.carouselNeedsReinit = true;
@@ -117,14 +136,23 @@ export class BestSellingComponent implements OnInit, AfterViewInit, AfterViewChe
   }
 
   selectTab(cat: Category) {
-    if (cat.title !== this.activeTabSubject.value.title) {
+    const current = this.activeTabSubject.value;
+    if (!current || cat.id !== current.id) {
       this.activeTabSubject.next(cat);
     }
   }
 
+
+
   openQuickView(prod: Product) {
     this.quickProduct = prod;
+    const modal = document.getElementById('exampleModal');
+    if (modal) {
+      const bsModal = new (window as any).bootstrap.Modal(modal);
+      bsModal.show();
+    }
   }
+
 
   closeQuickView() {
     this.quickProduct = undefined;
@@ -146,4 +174,5 @@ export class BestSellingComponent implements OnInit, AfterViewInit, AfterViewChe
     }
     return true;
   }
+
 }

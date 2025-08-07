@@ -4,14 +4,17 @@ export interface Product {
   id: number;
   title: string;
   imgPrimary: string;
-  imgSecondary?: string;
+  imgSecondary?: string | null;
   price: number;
-  salePrice?: number;
+  salePrice?: number | null;
   isNew: boolean;
   onSale: boolean;
   isStock: boolean;
-  countdownDate?: string;
-  category: Category;  // category as object
-  description?: string;
+  countdownDate?: string | null;
+  category_id: number;
+  category: Category;
+  description: string;
   status: 'active' | 'inactive';
 }
+
+

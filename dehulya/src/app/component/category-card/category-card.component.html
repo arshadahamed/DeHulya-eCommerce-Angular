@@ -1,24 +1,26 @@
 <div class="collection__2 sp_bottom_50">
   <div class="container">
-    <div
-      class="row grid__responsive collections__slider__active row__custom__class slider__default__arrow"
-    >
+    <div class="row grid__responsive collections__slider__active row__custom__class slider__default__arrow">
+
       <div
         class="col-xl-4 column__custom__class"
-        *ngFor="let category of categories"
-      >
+        *ngFor="let category of (categories$ | async); trackBy: trackById">
+
         <div class="collection__single__2">
           <div class="collection__img__2">
-            <img [src]="category.imageUrl" [alt]="category.title" />
+            <img [src]="category.imageUrl"
+                 [alt]="category.title"
+                 />
           </div>
+
           <div class="collection__text__2">
-            <h5>
-              <a href="#" tabindex="0">{{ category.title }}</a>
-            </h5>
-            <h6>({{ category.itemsCount }} items)</h6>
+            <h5><a href="#" tabindex="0">{{ category.title }}</a></h5>
+
           </div>
         </div>
+
       </div>
+
     </div>
   </div>
 </div>
