@@ -29,6 +29,8 @@
               }
             ],
             "styles": [
+              "node_modules/slick-carousel/slick/slick.scss",
+              "node_modules/slick-carousel/slick/slick-theme.scss",
               "src/styles.css",
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/animate.min.css",
@@ -45,12 +47,12 @@
               "src/assets/js/vendor/modernizr-3.5.0.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/jquery-countdown/dist/jquery.countdown.min.js",
-              "src/assets/js/owl.carousel.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/slick-carousel/slick/slick.min.js",
               "src/assets/js/popper.min.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/isotope.pkgd.min.js",
               "src/assets/js/one-page-nav-min.js",
-              "src/assets/js/slick.min.js",
               "src/assets/js/jquery.meanmenu.min.js",
               "src/assets/js/ajax-form.js",
               "src/assets/js/wow.min.js",

@@ -1,3 +1,5 @@
+import { Category } from './category.model';
+
 export interface Product {
   id: number;
   title: string;
@@ -8,12 +10,8 @@ export interface Product {
   isNew: boolean;
   onSale: boolean;
   isStock: boolean;
-  countdownDate?: string; // ISO 8601 date string recommended, e.g. "2026-06-01T00:00:00Z"
-  category: 'Diamond' | 'Gold' | 'Silver' | 'Platinum' | 'Emerald'; // Added Emerald for future-proofing
-
-  /** Optional descriptive fields for enhanced UI */
+  countdownDate?: string;
+  category: Category;  // category as object
   description?: string;
-
-  /** Product availability status */
   status: 'active' | 'inactive';
 }

@@ -9,25 +9,28 @@
           <li *ngFor="let cat of categories" class="nav-item">
             <button
               class="product__tap__link"
-              [class.active]="(activeTab$ | async) === cat"
-              (click)="selectTab(cat)">
-              {{ cat }}
+              [class.active]="(activeTab$ | async)?.title === cat.title"
+              (click)="selectTab(cat)"
+            >
+              {{ cat.title }}
             </button>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="row">
-      <div
-        class="col-xl-3 col-lg-3 col-md-6 col-12 mb-4"
-        *ngFor="let prod of (filteredProducts$ | async); trackBy: trackByProductId">
-        <app-product-card
-          [product]="prod"
-          (quickView)="openQuickView(prod)">
-        </app-product-card>
+    <ngx-slick-carousel
+      #slickModal="slick-carousel"
+      #carouselContainer
+      class="carousel"
+      [config]="slideConfig"
+    >
+      <div ngxSlickItem *ngFor="let prod of filteredProducts$ | async; trackBy: trackByProductId" class="slide">
+        <app-product-card [product]="prod" (quickView)="openQuickView(prod)"></app-product-card>
       </div>
-    </div>
+    </ngx-slick-carousel>
+
+
 
     <div class="row">
       <div class="col-12 text-center">
@@ -38,7 +41,8 @@
     <app-quick-view
       *ngIf="quickProduct"
       [product]="quickProduct"
-      (closed)="closeQuickView()">
+      (closed)="closeQuickView()"
+    >
     </app-quick-view>
   </div>
 </div>

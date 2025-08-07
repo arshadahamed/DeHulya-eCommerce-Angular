@@ -11,7 +11,7 @@
       "onSale": true,
       "isStock": true,
       "countdownDate": "2026-09-30T23:59:59",
-      "category": "Diamond",
+      "category": { "title": "Diamond", "imageUrl": "...", "itemsCount": 10 },
       "description": "Beautiful 14K white gold earrings set with brilliant round-cut diamonds totaling 1 carat. Perfect for everyday elegance or special occasions.",
       "status": "active"
     },
@@ -25,7 +25,7 @@
       "isNew": true,
       "onSale": true,
       "isStock": false,
-      "category": "Gold",
+      "category": { "title": "Diamond", "imageUrl": "...", "itemsCount": 10 },
       "description": "Timeless 18K yellow gold wedding band with a polished finish. Durable and comfortable for everyday wear.",
       "status": "active"
     },
@@ -39,7 +39,7 @@
       "isNew": false,
       "onSale": true,
       "isStock": true,
-      "category": "Silver",
+      "category": { "title": "Silver", "imageUrl": "...", "itemsCount": 10 },
       "description": "Elegant sterling silver bracelet featuring multiple customizable charms. A perfect gift for loved ones or a stylish accessory for yourself.",
       "status": "active"
     },
@@ -53,7 +53,21 @@
       "isNew": true,
       "onSale": true,
       "isStock": true,
-      "category": "Diamond",
+      "category": { "title": "Diamond", "imageUrl": "...", "itemsCount": 10 },
+      "description": "Exquisite diamond engagement ring with a stunning round diamond centerpiece, surrounded by smaller diamonds in a halo setting.",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "title": "Diamond Engagement Ring",
+      "imgPrimary": "/assets/img/grid/grid__19.png",
+      "imgSecondary": "/assets/img/grid/grid__20.png",
+      "price": 3500.00,
+      "salePrice": 2000.00,
+      "isNew": true,
+      "onSale": true,
+      "isStock": true,
+      "category": { "title": "Silver", "imageUrl": "...", "itemsCount": 10 },
       "description": "Exquisite diamond engagement ring with a stunning round diamond centerpiece, surrounded by smaller diamonds in a halo setting.",
       "status": "active"
     }

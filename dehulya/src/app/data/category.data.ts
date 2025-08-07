@@ -1,9 +1,8 @@
-export const CATEGORIES = [
-  'Diamond',
-  'Gold',
-  'Silver',
-  'Platinum',
-  'Emerald'
-] as const;
+import { Category } from "../models/category.model";
 
-export type Category = typeof CATEGORIES[number];
+export const CATEGORIES: Category[] = [
+  { title: 'Diamond', imageUrl: '...', itemsCount: 10 },
+  { title: 'Gold', imageUrl: '...', itemsCount: 5 },
+  { title: 'Silver', imageUrl: '...', itemsCount: 10 },
+  { title: 'Platinum', imageUrl: '...', itemsCount: 5 },
+];
